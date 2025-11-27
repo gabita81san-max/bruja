@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<!-- JuegoInteractivo.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Caliban y la Bruja: Juego Interactivo</title>
+    <style>
+        :root {
+  /* Primitive Color Tokens */
+  --color-white: rgba(255, 255, 255, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-cream-50: rgba(252, 252, 249, 1);
+  --color-cream-100: rgba(255, 255, 253, 1);
+  --color-gray-200: rgba(245, 245, 245, 1);
+  --color-gray-300: rgba(167, 169, 169, 1);
+  --color-gray-400: rgba(119, 124, 124, 1);
+  --color-slate-500: rgba(98, 108, 113, 1);
+  --color-brown-600: rgba(94, 82, 64, 1);
+  --color-charcoal-700: rgba(31, 33, 33, 1);
+  --color-charcoal-800: rgba(38, 40, 40, 1);
+  --color-slate-900: rgba(19, 52, 59, 1);
+  --color-teal-300: rgba(50, 184, 198, 1);
+  --color-teal-400: rgba(45, 166, 178, 1);
+  --color-teal-500: rgba(33, 128, 141, 1);
+  --color-teal-600: rgba(29, 116, 128, 1);
+  --color-teal-700: rgba(26, 104, 115, 1);
+  --color-teal-800: rgba(41, 150, 161, 1);
+  --color-red-400: rgba(255, 84, 89, 1);
+  --color-red-500: rgba(192, 21, 47, 1);
+  --color-orange-400: rgba(230, 129, 97, 1);
+  --color-orange-500: rgba(168, 75, 47, 1);
+
+  --color-brown-600-rgb: 94, 82, 64;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-slate-900-rgb: 19, 52, 59;
+  --color-slate-500-rgb: 98, 108, 113;
+  --color-red-500-rgb: 192, 21, 47;
+  --color-red-400-rgb: 255, 84, 89;
+  --color-orange-500-rgb: 168, 75, 47;
+  --color-orange-400-rgb: 230, 129, 97;
+
+  --color-bg-1: rgba(59, 130, 246, 0.08);
+  --color-bg-2: rgba(245, 158, 11, 0.08);
+  --color-bg-3: rgba(34, 197, 94, 0.08);
+  --color-bg-4: rgba(239, 68, 68, 0.08);
+  --color-bg-5: rgba(147, 51, 234, 0.08);
+  --color-bg-6: rgba(249, 115, 22, 0.08);
+  --color-bg-7: rgba(236, 72, 153, 0.08);
+  --color-bg-8: rgba(6, 182, 212, 0.08);
+
+  --color-background: var(--color-cream-50);
+  --color-surface: var(--color-cream-100);
+  --color-text: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
+  --color-primary: var(--color-teal-500);
+  --color-primary-hover: var(--color-teal-600);
+  --color-primary-active: var(--color-teal-700);
+  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-btn-primary-text: var(--color-cream-50);
+  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-error: var(--color-red-500);
+  --color-success: var(--color-teal-500);
+  --color-warning: var(--color-orange-500);
+  --color-info: var(--color-slate-500);
+  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+  --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+  --focus-ring: 0 0 0 3px var(--color-focus-ring);
+  --focus-outline: 2px solid var(--color-primary);
+  --status-bg-opacity: 0.15;
+  --status-border-opacity: 0.25;
+
+  --color-success-rgb: 33, 128, 141;
+  --color-error-rgb: 192, 21, 47;
+  --color-warning-rgb: 168, 75, 47;
+  --color-info-rgb: 98, 108, 113;
+
+  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 30px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 600;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --letter-spacing-tight: -0.01em;
+
+  --space-0: 0;
+  --space-1: 1px;
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+
+  --radius-sm: 6px;
+  --radius-base: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04),
+    0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04),
+    0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-gray-400-rgb: 119, 124, 124;
+    --color-teal-300-rgb: 50, 184, 198;
+    --color-gray-300-rgb: 167, 169, 169;
+    --color-gray-200-rgb: 245, 245, 245;
+
+    --color-bg-1: rgba(29, 78, 216, 0.15);
+    --color-bg-2: rgba(180, 83, 9, 0.15);
+    --color-bg-3: rgba(21, 128, 61, 0.15);
+    --color-bg-4: rgba(185, 28, 28, 0.15);
+    --color-bg-5: rgba(107, 33, 168, 0.15);
+    --color-bg-6: rgba(194, 65, 12, 0.15);
+    --color-bg-7: rgba(236, 72, 153, 0.15);
+    --color-bg-8: rgba(8, 145, 178, 0.15);
+
+    --color-background: var(--color-charcoal-700);
+    --color-surface: var(--color-charcoal-800);
+    --color-text: var(--color-gray-200);
+    --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+    --color-primary: var(--color-teal-300);
+    --color-primary-hover: var(--color-teal-400);
+    --color-primary-active: var(--color-teal-800);
+    --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+    --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+    --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-error: var(--color-red-400);
+    --color-success: var(--color-teal-300);
+    --color-warning: var(--color-orange-400);
+    --color-info: var(--color-gray-300);
+    --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+    --color-btn-primary-text: var(--color-slate-900);
+    --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+    --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+    --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+
+    --color-success-rgb: var(--color-teal-300-rgb);
+    --color-error-rgb: var(--color-red-400-rgb);
+    --color-warning-rgb: var(--color-orange-400-rgb);
+    --color-info-rgb: var(--color-gray-300-rgb);
+  }
+}
+
+@font-face {
+  font-family: 'FKGroteskNeue';
+  src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2')
+    format('woff2');
+}
+
+html {
+  font-size: var(--font-size-base);
+  font-family: var(--font-family-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* Custom Styles */
+.app-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--space-32) var(--space-16);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-32);
+}
+
+.header h1 {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-12);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.header .subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-normal);
+}
+
+.progress-bar {
+  background-color: var(--color-secondary);
+  height: 8px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--space-24);
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--color-primary);
+  transition: width 0.3s var(--ease-standard);
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-16);
+  margin-bottom: var(--space-24);
+}
+
+.theme-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-24);
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-standard);
+  position: relative;
+}
+
+.theme-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
+}
+
+.theme-card.completed {
+  border-color: var(--color-success);
+  background-color: rgba(var(--color-success-rgb), 0.05);
+}
+
+.theme-card h3 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-8);
+  color: var(--color-text);
+}
+
+.theme-card p {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-normal);
+  margin: 0;
+}
+
+.theme-card .badge {
+  position: absolute;
+  top: var(--space-12);
+  right: var(--space-12);
+  background-color: var(--color-primary);
+  color: var(--color-btn-primary-text);
+  padding: var(--space-4) var(--space-12);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.theme-card.completed .badge {
+  background-color: var(--color-success);
+}
+
+.quiz-container {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-32);
+  margin-bottom: var(--space-24);
+}
+
+.quiz-header {
+  margin-bottom: var(--space-24);
+}
+
+.quiz-header h2 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-8);
+  color: var(--color-text);
+}
+
+.quiz-header p {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.question-counter {
+  display: inline-block;
+  background-color: var(--color-secondary);
+  padding: var(--space-6) var(--space-16);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  margin-bottom: var(--space-20);
+}
+
+.question {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin-bottom: var(--space-24);
+  line-height: var(--line-height-tight);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  margin-bottom: var(--space-24);
+}
+
+.option {
+  background-color: var(--color-background);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-base);
+  padding: var(--space-16);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-standard);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  text-align: left;
+}
+
+.option:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-surface);
+}
+
+.option.selected {
+  border-color: var(--color-primary);
+  background-color: rgba(var(--color-teal-500-rgb), 0.1);
+}
+
+.option.correct {
+  border-color: var(--color-success);
+  background-color: rgba(var(--color-success-rgb), 0.1);
+}
+
+.option.incorrect {
+  border-color: var(--color-error);
+  background-color: rgba(var(--color-error-rgb), 0.1);
+}
+
+.option:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.explanation {
+  background-color: var(--color-bg-3);
+  border-left: 4px solid var(--color-success);
+  padding: var(--space-16);
+  border-radius: var(--radius-base);
+  margin-bottom: var(--space-24);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  line-height: var(--line-height-normal);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-12) var(--space-24);
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-standard);
+  border: none;
+  text-decoration: none;
+  font-family: var(--font-family-base);
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.btn-primary:active {
+  background: var(--color-primary-active);
+}
+
+.btn-secondary {
+  background: var(--color-secondary);
+  color: var(--color-text);
+}
+
+.btn-secondary:hover {
+  background: var(--color-secondary-hover);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-group {
+  display: flex;
+  gap: var(--space-12);
+  flex-wrap: wrap;
+}
+
+.results-container {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-32);
+  text-align: center;
+}
+
+.score-display {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: var(--space-16);
+}
+
+.results-message {
+  font-size: var(--font-size-xl);
+  color: var(--color-text);
+  margin-bottom: var(--space-24);
+  font-weight: var(--font-weight-medium);
+}
+
+.results-details {
+  background-color: var(--color-background);
+  border-radius: var(--radius-base);
+  padding: var(--space-24);
+  margin-bottom: var(--space-24);
+  text-align: left;
+}
+
+.results-details h3 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-16);
+  color: var(--color-text);
+}
+
+.results-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.results-details li {
+  padding: var(--space-8) 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+  display: flex;
+  align-items: center;
+}
+
+.results-details li::before {
+  content: "✓";
+  color: var(--color-success);
+  font-weight: var(--font-weight-bold);
+  margin-right: var(--space-12);
+  font-size: var(--font-size-lg);
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .app-container {
+    padding: var(--space-16);
+  }
+  
+  .header h1 {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .quiz-container {
+    padding: var(--space-20);
+  }
+  
+  .theme-grid {
+    grid-template-columns: 1fr;
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1>El Caliban y la Bruja</h1>
+            <p class="subtitle">Juego Interactivo sobre el libro de Silvia Federici</p>
+        </div>
+
+        <!-- Menu Screen -->
+        <div id="menu-screen">
+            <div class="progress-bar">
+                <div id="overall-progress" class="progress-fill" style="width: 0%;"></div>
+            </div>
+            <div class="theme-grid" id="theme-grid"><div class="theme-card">
+                    <h3>Perspectiva Feminista</h3>
+                    <p>La teoría feminista de Silvia Federici sobre la acumulación primitiva y el papel de las mujeres en el capitalismo</p>
+                    <span class="badge">3 preguntas</span>
+                </div><div class="theme-card">
+                    <h3>Movimientos Medievales</h3>
+                    <p>Luchas anti-feudales, herejías y movimientos sociales en la Edad Media</p>
+                    <span class="badge">3 preguntas</span>
+                </div><div class="theme-card">
+                    <h3>Herejías y Resistencia</h3>
+                    <p>Movimientos heréticos y políticas sexuales en la Edad Media</p>
+                    <span class="badge">3 preguntas</span>
+                </div><div class="theme-card">
+                    <h3>Crisis y Transición</h3>
+                    <p>Crisis demográfica, económica y la transición al capitalismo</p>
+                    <span class="badge">3 preguntas</span>
+                </div><div class="theme-card">
+                    <h3>Acumulación del Trabajo</h3>
+                    <p>Cómo el capitalismo requería la degradación y control de las mujeres</p>
+                    <span class="badge">3 preguntas</span>
+                </div></div>
+            <div class="btn-group" style="justify-content: center; margin-top: var(--space-24);">
+                <button class="btn btn-primary" id="show-results-btn" style="display: none;">Ver Resultados Finales</button>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="hidden">
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <h2 id="theme-title"></h2>
+                    <p id="theme-description"></p>
+                </div>
+                
+                <div class="question-counter" id="question-counter"></div>
+                
+                <div class="question" id="question-text"></div>
+                
+                <div class="options" id="options-container"></div>
+                
+                <div id="explanation-container" class="hidden">
+                    <div class="explanation" id="explanation-text"></div>
+                </div>
+                
+                <div class="btn-group">
+                    <button class="btn btn-secondary" id="back-to-menu-btn">Volver al Menú</button>
+                    <button class="btn btn-primary" id="next-question-btn" disabled="">Siguiente Pregunta</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="hidden">
+            <div class="results-container">
+                <h2 style="font-size: var(--font-size-3xl); margin-bottom: var(--space-16);">¡Resultados Finales!</h2>
+                
+                <div class="score-display" id="final-score"></div>
+                
+                <div class="results-message" id="results-message"></div>
+                
+                <div class="results-details">
+                    <h3>Temas Completados:</h3>
+                    <ul id="completed-themes-list"></ul>
+                </div>
+                
+                <div class="btn-group" style="justify-content: center;">
+                    <button class="btn btn-primary" id="play-again-btn">Jugar de Nuevo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game Data
+        const themes = [
+            {
+                id: 1,
+                title: "Perspectiva Feminista",
+                description: "La teoría feminista de Silvia Federici sobre la acumulación primitiva y el papel de las mujeres en el capitalismo",
+                questions: [
+                    {
+                        question: "¿Cuál es el argumento central de Federici sobre las mujeres y el capitalismo?",
+                        options: [
+                            "Las mujeres fueron excluidas del capitalismo",
+                            "El trabajo reproductivo de las mujeres fue fundamental para la acumulación de capital",
+                            "Las mujeres eran inherentemente capitalistas"
+                        ],
+                        correct: 1,
+                        explanation: "Federici argumenta que el trabajo doméstico no pagado de las mujeres fue el pilar sobre el que se construyó la explotación de los trabajadores asalariados."
+                    },
+                    {
+                        question: "¿A qué se refiere la expresión 'Omnia sunt communia'?",
+                        options: [
+                            "Todo es privado",
+                            "Todo es común",
+                            "Todo es feudal"
+                        ],
+                        correct: 1,
+                        explanation: "Era el grito colectivista de campesinos anabaptistas que reivindicaban formas de vida comunal."
+                    },
+                    {
+                        question: "¿Cuál es la relación entre la caza de brujas y la acumulación primitiva según Federici?",
+                        options: [
+                            "No hay relación",
+                            "La caza de brujas fue un método para controlar a las mujeres y sus cuerpos, facilitando la acumulación",
+                            "La caza de brujas fue un accidente histórico"
+                        ],
+                        correct: 1,
+                        explanation: "Federici sostiene que la caza de brujas fue un dispositivo violento dirigido a despojar a las mujeres de su cuerpo y saberes."
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "Movimientos Medievales",
+                description: "Luchas anti-feudales, herejías y movimientos sociales en la Edad Media",
+                questions: [
+                    {
+                        question: "¿Qué caracterizaba a los movimientos urbanos y campesinos medievales?",
+                        options: [
+                            "Obediencia total al feudalismo",
+                            "Reivindicación de vida comunal y reparto de riqueza",
+                            "Aceptación del capitalismo"
+                        ],
+                        correct: 1,
+                        explanation: "Estos movimientos bajo la forma de herejía religiosa reivindicaban y practicaban diversos experimentos de vida comunal."
+                    },
+                    {
+                        question: "¿Cuál fue el impacto de la Peste Negra en las relaciones de trabajo?",
+                        options: [
+                            "Ninguno",
+                            "Provocó una crisis del trabajo que fortaleció la posición de los trabajadores",
+                            "Favoreció completamente a los señores feudales"
+                        ],
+                        correct: 1,
+                        explanation: "La Peste Negra redujo la población y creó una crisis del trabajo que cambió las dinámicas de poder."
+                    },
+                    {
+                        question: "¿Qué papel tuvieron las mujeres en las herejías medievales?",
+                        options: [
+                            "Fueron excluidas",
+                            "Participaron activamente como líderes religiosas y políticas",
+                            "Solo fueron observadoras"
+                        ],
+                        correct: 1,
+                        explanation: "Las mujeres participaron activamente en movimientos heréticos como líderes religiosas y políticas."
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "Herejías y Resistencia",
+                description: "Movimientos heréticos y políticas sexuales en la Edad Media",
+                questions: [
+                    {
+                        question: "¿Qué fue la 'politización de la sexualidad' en la Edad Media?",
+                        options: [
+                            "No fue un concepto importante",
+                            "Los movimientos heréticos cuestionaban el control patriarcal sobre el cuerpo y la sexualidad de las mujeres",
+                            "Solo se refería a la reproducción"
+                        ],
+                        correct: 1,
+                        explanation: "Los movimientos heréticos cuestionaban el control patriarcal, permitiendo mayor autonomía sexual para las mujeres."
+                    },
+                    {
+                        question: "¿Cómo respondió el Estado a los movimientos medievales de resistencia?",
+                        options: [
+                            "Los apoyó",
+                            "Los ignoró completamente",
+                            "Utilizó violencia extrema para aniquilarlos"
+                        ],
+                        correct: 2,
+                        explanation: "El Estado intervino violentamente para aniquilar estos movimientos, estableciendo las bases del proceso de acumulación."
+                    },
+                    {
+                        question: "¿Qué significa 'lucha por lo común' en el contexto medieval?",
+                        options: [
+                            "Lucha por tierras privadas",
+                            "Lucha por mantener acceso a tierras y recursos comunales",
+                            "Lucha por dinero"
+                        ],
+                        correct: 1,
+                        explanation: "Las comunidades medievales luchaban por preservar el acceso colectivo a tierras, bosques y recursos."
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: "Crisis y Transición",
+                description: "Crisis demográfica, económica y la transición al capitalismo",
+                questions: [
+                    {
+                        question: "¿Cuál fue el principal problema de población durante el surgimiento del capitalismo?",
+                        options: [
+                            "Sobrepoblación",
+                            "Despoblación y crisis demográfica",
+                            "Migración voluntaria"
+                        ],
+                        correct: 1,
+                        explanation: "La crisis de población de los siglos XVI y XVII hizo que la procreación se convirtiera en un problema de Estado."
+                    },
+                    {
+                        question: "¿Qué fueron las 'Leyes Sangrientas' introducidas en los siglos XVI-XVII?",
+                        options: [
+                            "Leyes de educación",
+                            "Leyes violentas contra vagabundos y trabajadores desempleados",
+                            "Leyes de matrimonio"
+                        ],
+                        correct: 1,
+                        explanation: "Estas leyes criminalizaban a los trabajadores sin empleo y los ponían a disposición de la explotación."
+                    },
+                    {
+                        question: "¿Cómo se relacionaba la privatización de tierras con la pauperización de las mujeres?",
+                        options: [
+                            "No estaban relacionadas",
+                            "Las mujeres perdieron acceso a tierras comunales y fueron subordinadas a los hombres",
+                            "Las mujeres ganaron poder"
+                        ],
+                        correct: 1,
+                        explanation: "La pérdida de tierras comunales fue parcialmente compensada por una apropiación de las mujeres entre varones de la clase trabajadora."
+                    }
+                ]
+            },
+            {
+                id: 5,
+                title: "Acumulación del Trabajo",
+                description: "Cómo el capitalismo requería la degradación y control de las mujeres",
+                questions: [
+                    {
+                        question: "¿Qué fue la 'separación de la producción y la reproducción'?",
+                        options: [
+                            "Un concepto sin importancia",
+                            "El proceso por el cual el trabajo doméstico se separó del trabajo productivo pagado",
+                            "Solo una teoría abstracta"
+                        ],
+                        correct: 1,
+                        explanation: "Esta separación fue fundamental para el capitalismo, haciendo que el trabajo reproductivo de mujeres no fuera reconocido ni pagado."
+                    },
+                    {
+                        question: "¿Cuál era el objetivo del 'patriarcado del salario'?",
+                        options: [
+                            "Pagar a todos por igual",
+                            "Crear un sistema donde hombres controlaban a mujeres mediante el control del salario",
+                            "Eliminar el salario"
+                        ],
+                        correct: 1,
+                        explanation: "El patriarcado del salario subordinaba a las mujeres a los hombres, quienes tenían acceso al trabajo asalariado."
+                    },
+                    {
+                        question: "¿Cómo describió Federici la transformación del cuerpo femenino en el capitalismo?",
+                        options: [
+                            "Como una liberación",
+                            "Como una máquina de producción de nuevos trabajadores bajo control estatal y patriarcal",
+                            "Como un proceso natural"
+                        ],
+                        correct: 1,
+                        explanation: "El cuerpo de las mujeres fue mecanizado y transformado en un instrumento para la reproducción de la fuerza de trabajo."
+                    }
+                ]
+            }
+        ];
+
+        // Game State
+        let gameState = {
+            currentTheme: null,
+            currentQuestionIndex: 0,
+            score: 0,
+            completedThemes: [],
+            themeScores: {}
+        };
+
+        // DOM Elements
+        const menuScreen = document.getElementById('menu-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        const themeGrid = document.getElementById('theme-grid');
+        const overallProgress = document.getElementById('overall-progress');
+        const showResultsBtn = document.getElementById('show-results-btn');
+
+        // Initialize Game
+        function initGame() {
+            renderThemeMenu();
+            updateOverallProgress();
+        }
+
+        // Render Theme Menu
+        function renderThemeMenu() {
+            themeGrid.innerHTML = '';
+            
+            themes.forEach(theme => {
+                const card = document.createElement('div');
+                card.className = 'theme-card';
+                
+                if (gameState.completedThemes.includes(theme.id)) {
+                    card.classList.add('completed');
+                }
+                
+                card.innerHTML = `
+                    <h3>${theme.title}</h3>
+                    <p>${theme.description}</p>
+                    ${gameState.completedThemes.includes(theme.id) ? '<span class="badge">✓ Completado</span>' : '<span class="badge">3 preguntas</span>'}
+                `;
+                
+                card.addEventListener('click', () => startTheme(theme.id));
+                themeGrid.appendChild(card);
+            });
+
+            // Show results button if all themes completed
+            if (gameState.completedThemes.length === themes.length) {
+                showResultsBtn.style.display = 'inline-flex';
+            }
+        }
+
+        // Update Overall Progress
+        function updateOverallProgress() {
+            const progress = (gameState.completedThemes.length / themes.length) * 100;
+            overallProgress.style.width = progress + '%';
+        }
+
+        // Start Theme
+        function startTheme(themeId) {
+            const theme = themes.find(t => t.id === themeId);
+            if (!theme) return;
+
+            gameState.currentTheme = theme;
+            gameState.currentQuestionIndex = 0;
+            
+            // Initialize theme score if not exists
+            if (!gameState.themeScores[themeId]) {
+                gameState.themeScores[themeId] = 0;
+            }
+
+            showQuizScreen();
+            renderQuestion();
+        }
+
+        // Show Quiz Screen
+        function showQuizScreen() {
+            menuScreen.classList.add('hidden');
+            resultsScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+
+            const theme = gameState.currentTheme;
+            document.getElementById('theme-title').textContent = theme.title;
+            document.getElementById('theme-description').textContent = theme.description;
+        }
+
+        // Render Question
+        function renderQuestion() {
+            const theme = gameState.currentTheme;
+            const questionData = theme.questions[gameState.currentQuestionIndex];
+            const questionNumber = gameState.currentQuestionIndex + 1;
+            const totalQuestions = theme.questions.length;
+
+            document.getElementById('question-counter').textContent = `Pregunta ${questionNumber} de ${totalQuestions}`;
+            document.getElementById('question-text').textContent = questionData.question;
+
+            // Render options
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            questionData.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = 'option';
+                button.textContent = option;
+                button.addEventListener('click', () => selectAnswer(index));
+                optionsContainer.appendChild(button);
+            });
+
+            // Hide explanation and disable next button
+            document.getElementById('explanation-container').classList.add('hidden');
+            document.getElementById('next-question-btn').disabled = true;
+        }
+
+        // Select Answer
+        function selectAnswer(selectedIndex) {
+            const theme = gameState.currentTheme;
+            const questionData = theme.questions[gameState.currentQuestionIndex];
+            const options = document.querySelectorAll('.option');
+
+            // Disable all options
+            options.forEach(opt => opt.disabled = true);
+
+            // Mark selected option
+            const selectedOption = options[selectedIndex];
+            selectedOption.classList.add('selected');
+
+            // Check if correct
+            if (selectedIndex === questionData.correct) {
+                selectedOption.classList.add('correct');
+                gameState.themeScores[theme.id]++;
+                gameState.score++;
+            } else {
+                selectedOption.classList.add('incorrect');
+                // Show correct answer
+                options[questionData.correct].classList.add('correct');
+            }
+
+            // Show explanation
+            document.getElementById('explanation-text').textContent = questionData.explanation;
+            document.getElementById('explanation-container').classList.remove('hidden');
+
+            // Enable next button
+            document.getElementById('next-question-btn').disabled = false;
+        }
+
+        // Next Question
+        document.getElementById('next-question-btn').addEventListener('click', () => {
+            const theme = gameState.currentTheme;
+            gameState.currentQuestionIndex++;
+
+            if (gameState.currentQuestionIndex < theme.questions.length) {
+                renderQuestion();
+            } else {
+                completeTheme();
+            }
+        });
+
+        // Complete Theme
+        function completeTheme() {
+            const themeId = gameState.currentTheme.id;
+            
+            if (!gameState.completedThemes.includes(themeId)) {
+                gameState.completedThemes.push(themeId);
+            }
+
+            updateOverallProgress();
+            showMenuScreen();
+        }
+
+        // Back to Menu
+        document.getElementById('back-to-menu-btn').addEventListener('click', () => {
+            showMenuScreen();
+        });
+
+        // Show Menu Screen
+        function showMenuScreen() {
+            quizScreen.classList.add('hidden');
+            resultsScreen.classList.add('hidden');
+            menuScreen.classList.remove('hidden');
+            renderThemeMenu();
+        }
+
+        // Show Results Button
+        showResultsBtn.addEventListener('click', () => {
+            showResultsScreen();
+        });
+
+        // Show Results Screen
+        function showResultsScreen() {
+            menuScreen.classList.add('hidden');
+            quizScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+
+            const totalQuestions = themes.length * 3;
+            const scorePercentage = (gameState.score / totalQuestions) * 100;
+
+            document.getElementById('final-score').textContent = `${gameState.score} / ${totalQuestions}`;
+
+            // Results message
+            let message = '';
+            if (scorePercentage >= 90) {
+                message = '¡Excelente! Tienes un conocimiento profundo del libro de Federici.';
+            } else if (scorePercentage >= 70) {
+                message = '¡Muy bien! Has comprendido las ideas principales del Caliban y la Bruja.';
+            } else if (scorePercentage >= 50) {
+                message = 'Buen trabajo. Considera revisar algunos temas para profundizar tu comprensión.';
+            } else {
+                message = 'Sigue aprendiendo. Te recomendamos repasar el libro y jugar de nuevo.';
+            }
+            document.getElementById('results-message').textContent = message;
+
+            // Completed themes list
+            const themesList = document.getElementById('completed-themes-list');
+            themesList.innerHTML = '';
+            
+            themes.forEach(theme => {
+                const li = document.createElement('li');
+                const score = gameState.themeScores[theme.id] || 0;
+                li.textContent = `${theme.title}: ${score}/3 correctas`;
+                themesList.appendChild(li);
+            });
+        }
+
+        // Play Again
+        document.getElementById('play-again-btn').addEventListener('click', () => {
+            gameState = {
+                currentTheme: null,
+                currentQuestionIndex: 0,
+                score: 0,
+                completedThemes: [],
+                themeScores: {}
+            };
+            showResultsBtn.style.display = 'none';
+            showMenuScreen();
+        });
+
+        // Initialize on load
+        initGame();
+    </script>
+
+</body></html>
